@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armonk Country Kitchen — The Place for Comfort Food</title>
+<meta name="description" content="Armonk Country Kitchen — breakfast, lunch, made-to-order salad bar and catering at 397 Main St, Armonk, NY.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --pine:#463C26;
+    --pine-dark:#18140D;
+    --pine-mid:#5C4E30;
+    --charcoal:#171310;
+    --charcoal-soft:#221C15;
+    --cream:#F3ECDC;
+    --paper:#FFFCF6;
+    --ink:#241F16;
+    --ink-soft:#5C5445;
+    --brick:#D97746;
+    --brick-dark:#B65E32;
+    --gold:#D97746;
+    --stone:#C9A263;
+    --line: rgba(36,31,22,0.12);
+    --line-dark: rgba(243,236,220,0.14);
+    --radius: 16px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    margin:0;
+    font-weight:600;
+    color:var(--pine);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:12px;
+    color:var(--brick);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--brick);
+    display:inline-block;
+  }
+  section{padding:96px 0;}
+  @media(max-width:720px){ section{padding:64px 0;} }
+
+  /* laurel signature motif, echoes the real menu letterhead */
+  .laurel{display:flex;align-items:center;justify-content:center;gap:18px;margin:18px 0 8px;}
+  .laurel svg{width:46px;height:24px;color:var(--gold);}
+  .laurel svg.flip{transform:scaleX(-1);}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 26px;
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    border:1px solid currentColor;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:all .2s ease;
+    background:transparent;
+  }
+  .btn-solid{
+    background:var(--brick);
+    border-color:var(--brick);
+    color:var(--paper);
+  }
+  .btn-solid:hover{background:var(--brick-dark);border-color:var(--brick-dark);}
+  .btn-line{color:var(--paper);border-color:rgba(255,255,255,0.6);}
+  .btn-line:hover{background:rgba(255,255,255,0.12);border-color:#fff;}
+  .btn-pine{color:var(--pine);border-color:var(--pine);}
+  .btn-pine:hover{background:var(--pine);color:var(--paper);}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:20px 0;
+    transition:background .35s ease, padding .35s ease, box-shadow .35s ease, transform .35s ease;
+  }
+  header.nav.hide-header{transform:translateY(-100%);}
+  header.nav .container{display:flex;align-items:center;justify-content:space-between;position:relative;}
+  .brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:#fff;}
+  .brand svg{width:26px;height:26px;color:var(--gold);}
+  header.nav.scrolled{background:rgba(14,30,23,.85);backdrop-filter:blur(10px) saturate(140%);padding:12px 0;box-shadow:0 6px 24px rgba(0,0,0,.28);}
+  nav.links{display:flex;align-items:center;gap:34px;}
+  nav.links a{
+    color:rgba(255,255,255,0.88);
+    font-size:14px;
+    font-family:'Space Mono',monospace;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);
+    transition:width .25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-phone{
+    font-family:'Space Mono',monospace;
+    color:#fff;
+    font-size:14px;
+    display:flex;align-items:center;gap:8px;
+    border:1px solid rgba(255,255,255,.5);
+    padding:9px 16px;
+    border-radius:var(--radius);
+  }
+  .nav-phone:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+  .nav-toggle{
+    display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer;
+    position:relative;z-index:200;width:32px;height:32px;
+  }
+  .nav-toggle .icon-burger,.nav-toggle .icon-close{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .nav-toggle .icon-close{opacity:0;transform:translate(-50%,-50%) rotate(-90deg);}
+  .nav-toggle.open .icon-burger{opacity:0;transform:translate(-50%,-50%) rotate(90deg);}
+  .nav-toggle.open .icon-close{opacity:1;transform:translate(-50%,-50%) rotate(0);}
+
+  .nav-backdrop{
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,0);
+    z-index:90;transition:background .35s ease;
+  }
+  @media(max-width:920px){
+    nav.links{position:absolute;top:calc(100% + 10px);right:24px;left:auto;bottom:auto;width:auto;
+      min-width:200px;max-width:260px;
+      background:var(--pine-dark);flex-direction:column;justify-content:flex-start;align-items:flex-start;
+      padding:18px 22px;gap:16px;border-radius:var(--radius);
+      box-shadow:0 20px 40px -12px rgba(0,0,0,.5);
+      opacity:0;visibility:hidden;transform:translateY(-8px);
+      transition:opacity .22s ease, transform .22s ease, visibility .22s ease;
+      z-index:160;}
+    nav.links.open{opacity:1;visibility:visible;transform:translateY(0);}
+    .nav-phone{display:none;}
+    .nav-toggle{display:block;}
+    .nav-backdrop.open{display:block;background:rgba(0,0,0,.35);}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:620px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    color:#fff;
+  }
+  .hero-slides{position:absolute;inset:0;}
+  .hero-slides .slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;
+    animation:heroFade 12s infinite;
+    transform:scale(1.08);
+  }
+  .hero-slides .slide.s1{background-image:url('Front1.jpg');animation-delay:0s;}
+  .hero-slides .slide.s2{background-image:url('case.jpg');animation-delay:4s;}
+    .hero-slides .slide.s3{background-image:url('Front3.jpg');animation-delay:8s;}
+  @keyframes heroFade{
+    0%{opacity:0;transform:scale(1.08);}
+    6%{opacity:1;}
+    45%{opacity:1;transform:scale(1.15);}
+    52%{opacity:0;}
+    100%{opacity:0;}
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(24,20,13,.72) 0%, rgba(24,20,13,.55) 40%, rgba(24,20,13,.85) 100%);
+  }
+
+  /* On a tall, narrow phone screen, background-size:cover has to blow the (landscape)
+     photos up a lot to fill 100vh, cropping in tight on the middle — that's the "zoomed in"
+     look. Shortening the hero on mobile means the image needs far less enlargement to
+     cover it, so you see much more of each photo. The Ken Burns zoom is also toned down
+     so it doesn't push in further on top of that. */
+  @media(max-width:760px){
+    .hero{height:78vh;min-height:460px;max-height:640px;}
+    .hero-slides .slide{animation-name:heroFadeMobile;transform:scale(1.02);}
+  }
+  @keyframes heroFadeMobile{
+    0%{opacity:0;transform:scale(1.02);}
+    6%{opacity:1;}
+    45%{opacity:1;transform:scale(1.07);}
+    52%{opacity:0;}
+    100%{opacity:0;}
+  }
+  .hero .container{position:relative;z-index:2;}
+  .hero-content{max-width:720px;}
+  .hero h1{
+    font-size:clamp(42px,7vw,74px);
+    color:#fff;
+    line-height:1.02;
+    margin:18px 0 14px;
+  }
+  .hero .tagline{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--stone);
+    margin-bottom:36px;
+  }
+  .hero .eyebrow{color:var(--gold);}
+  .hero .eyebrow::before{background:var(--gold);}
+  .hero-logo{
+    width:100%;
+    max-width:640px;
+    height:auto;
+    margin:20px 0 32px;
+    filter:brightness(0) invert(1);
+    display:block;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    z-index:2;color:rgba(255,255,255,.75);
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .scroll-cue span.line{width:1px;height:34px;background:rgba(255,255,255,.5);animation:scrollLine 1.8s infinite;}
+  @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--pine);}
+  .about .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  @media(max-width:860px){.about .grid{grid-template-columns:1fr;gap:40px;}}
+  .about-photo{position:relative;}
+  .about-photo img{border-radius:var(--radius);box-shadow:0 30px 60px -20px rgba(0,0,0,.55);}
+  .about-photo .frame{
+    position:absolute;inset:18px -18px -18px 18px;
+    border:1px solid var(--gold);
+    border-radius:var(--radius);
+    z-index:-1;
+  }
+  .about h2{font-size:clamp(30px,4vw,42px);margin-bottom:20px;color:#fff;}
+  .about p{color:rgba(243,238,224,.78);font-size:16px;max-width:50ch;}
+  .about .eyebrow{color:var(--gold);}
+  .about .eyebrow::before{background:var(--gold);}
+  .facts{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+  .fact{
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;letter-spacing:.03em;
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--line-dark);
+    padding:10px 16px;
+    border-radius:999px;
+    color:var(--stone);
+  }
+
+  /* ---------- MENU ---------- */
+  .menu-section{background:var(--charcoal);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);}
+  .menu-head{text-align:center;max-width:640px;margin:0 auto 20px;}
+  .menu-head h2{font-size:clamp(32px,4.4vw,46px);color:#fff;}
+  .menu-head p{color:rgba(243,238,224,.72);margin-top:14px;}
+  .menu-section .eyebrow{color:var(--gold);}
+  .menu-section .eyebrow::before{background:var(--gold);}
+  .menu-section .laurel svg{color:var(--gold);}
+
+  .tabs{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+    margin:40px 0 48px;
+  }
+  /* tab-item is a transparent wrapper: on desktop its button+panel children
+     act as if they were direct children of .tabs (see order/flex-basis below) */
+  .tab-item{display:contents;}
+  .tab-btn{
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;
+    padding:11px 20px;
+    border:1px solid var(--line-dark);
+    background:rgba(255,255,255,.04);
+    color:var(--gold);
+    font-weight:600;
+    border-radius:999px;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .tab-btn:hover{border-color:var(--gold);color:var(--gold);}
+  .tab-btn.active{background:var(--gold);border-color:var(--gold);color:var(--charcoal);font-weight:600;}
+
+  /* desktop: every panel is pushed after all the buttons (order) and forced
+     onto its own full-width line (flex-basis 100%), same look as before */
+  .tab-panel{display:none;order:99;flex:1 1 100%;}
+  .tab-panel.active{display:block;animation:fadeUp .4s ease;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+  .tab-btn .tab-chev{display:none;}
+
+  /* ---------- MENU: mobile accordion ---------- */
+  @media(max-width:760px){
+    .tabs{
+      flex-direction:column;
+      align-items:stretch;
+      gap:0;
+      margin:32px 0 0;
+      border-top:1px solid var(--line-dark);
+    }
+    .tab-btn{
+      width:100%;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      text-align:left;
+      border:0;border-bottom:1px solid var(--line-dark);
+      border-radius:0;
+      background:transparent;
+      padding:18px 4px;
+      color:var(--gold);
+      font-weight:600;
+      font-size:13.5px;
+    }
+    .tab-btn.active{background:transparent;border-color:var(--line-dark);color:var(--gold);font-weight:600;}
+    .tab-btn .tab-chev{display:block;width:16px;height:16px;color:currentColor;flex-shrink:0;transition:transform .3s ease;}
+    .tab-btn.active .tab-chev{transform:rotate(180deg);}
+
+    /* panels expand to fit their content automatically (grid-rows trick) —
+       no JS height measurement, so nothing lags or clips once images/fonts finish loading.
+       order/flex-basis are reset here so each panel drops down right under its own
+       button (natural DOM order) instead of after all the buttons like on desktop */
+    .tab-panel{
+      order:0;
+      flex:none;
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .35s ease;
+    }
+    .tab-panel.active{
+      display:grid;
+      grid-template-rows:1fr;
+      animation:none;
+    }
+    .tab-panel-inner{overflow:hidden;min-height:0;}
+    .tab-panel.active .tab-panel-inner{padding-top:28px;padding-bottom:8px;}
+  }
+
+  .menu-group{margin-bottom:44px;}
+  .menu-group:last-child{margin-bottom:0;}
+  .menu-group-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:22px;
+    border-bottom:1px solid var(--line-dark);padding-bottom:10px;
+  }
+  .menu-group-head h3{font-size:22px;color:var(--gold);}
+  .menu-group-note{font-family:'Space Mono',monospace;font-size:11.5px;color:rgba(243,238,224,.55);text-transform:none;letter-spacing:.02em;}
+
+  .menu-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    column-gap:48px; row-gap:22px;
+  }
+  @media(max-width:760px){.menu-grid{grid-template-columns:1fr;}}
+  .menu-item h4{
+    font-size:17px;font-weight:600;color:#fff;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .menu-item .dots{flex:1;border-bottom:1px dotted rgba(243,238,224,.25);margin-bottom:4px;min-width:8px;}
+  .menu-item p{margin:5px 0 0;color:rgba(243,238,224,.62);font-size:14px;font-style:italic;}
+  .tag{
+    font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;
+    background:var(--gold);color:#3a2f06;padding:2px 7px;border-radius:3px;position:relative;top:-1px;
+  }
+
+  /* build-your-own steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  @media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.steps{grid-template-columns:1fr;}}
+  .step{background:rgba(255,255,255,.03);border:1px solid var(--line-dark);padding:24px 22px;border-radius:var(--radius);transition:border-color .2s ease, transform .2s ease;}
+  .step:hover{border-color:var(--gold);transform:translateY(-2px);}
+  .step .step-num{font-family:'Space Mono',monospace;color:var(--gold);font-size:12px;letter-spacing:.1em;text-transform:uppercase;}
+  .step h4{font-size:17px;margin:8px 0 12px;color:#fff;}
+  .step ul{margin:0;padding:0;list-style:none;}
+  .step li{font-size:14px;color:rgba(243,238,224,.65);padding:4px 0;border-bottom:1px dashed var(--line-dark);}
+  .step li:last-child{border-bottom:0;}
+
+  /* ---------- CATERING ---------- */
+  .catering{background:var(--pine);color:var(--stone);position:relative;overflow:hidden;}
+  .catering::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 85% 15%, rgba(201,162,39,.16), transparent 55%);
+  }
+  .catering .container{position:relative;z-index:1;}
+  .catering .menu-head p{color:rgba(246,241,228,.78);}
+  .catering .menu-head .eyebrow{color:var(--gold);}
+  .catering .menu-head .eyebrow::before{background:var(--gold);}
+  .cater-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:48px;}
+  @media(max-width:900px){.cater-grid{grid-template-columns:1fr;}}
+  .cater-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.14);
+    padding:32px 28px;border-radius:var(--radius);
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .cater-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(0,0,0,.6);}
+  .cater-card .num{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:34px;line-height:1;}
+  .cater-card h3{color:#fff;font-size:21px;margin:14px 0 12px;}
+  .cater-card p{color:rgba(246,241,228,.8);font-size:14.5px;margin:0 0 14px;}
+  .cater-card ul{margin:0;padding:0;list-style:none;}
+  .cater-card li{font-size:14px;color:rgba(246,241,228,.85);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+  .cater-card li:last-child{border-bottom:0;}
+  .menu-jump-link{color:inherit;text-decoration:underline;text-decoration-color:rgba(246,241,228,.4);text-underline-offset:3px;cursor:pointer;transition:color .2s ease;}
+  .menu-jump-link:hover{color:var(--gold);text-decoration-color:var(--gold);}
+
+  .accordion{margin-top:4px;}
+  .accordion-item{border-bottom:1px solid rgba(255,255,255,.08);}
+  .accordion-item:first-child{border-top:1px solid rgba(255,255,255,.08);}
+  .accordion-toggle{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    background:none;border:0;cursor:pointer;padding:13px 2px;
+    font-family:'Work Sans',sans-serif;font-size:14.5px;font-weight:600;color:#fff;text-align:left;
+  }
+  .accordion-toggle .chev{width:16px;height:16px;color:var(--gold);flex-shrink:0;transition:transform .25s ease;}
+  .accordion-toggle[aria-expanded="true"] .chev{transform:rotate(180deg);}
+  .accordion-toggle:hover{color:var(--gold);}
+  .accordion-panel{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .accordion-panel-inner{padding:2px 2px 18px;}
+  .acc-item{padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.1);}
+  .acc-item:last-child{border-bottom:0;}
+  .acc-item h5{margin:0;font-family:'Fraunces',serif;font-weight:600;font-size:14.5px;color:#fff;}
+  .acc-item p{margin:3px 0 0;font-size:12.5px;font-style:italic;color:rgba(246,241,228,.65);}
+  .acc-tag{
+    font-family:'Space Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.05em;
+    background:var(--gold);color:#3a2f06;padding:2px 6px;border-radius:3px;position:relative;top:-1px;margin-left:4px;
+  }
+  .acc-note{margin:12px 0 0;font-family:'Space Mono',monospace;font-size:11px;color:rgba(246,241,228,.55);font-style:normal;}
+  .cater-cta{
+    margin-top:56px;text-align:center;padding-top:40px;border-top:1px solid rgba(255,255,255,.16);
+  }
+  .cater-cta h3{color:#fff;font-size:26px;margin-bottom:14px;}
+  .cater-cta p{color:rgba(246,241,228,.78);margin-bottom:24px;}
+
+  /* ---------- VISIT ---------- */
+  .visit{background:var(--charcoal);}
+  .visit .grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;}
+  @media(max-width:900px){.visit .grid{grid-template-columns:1fr;}}
+  .hours-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.14);
+    padding:32px 28px;border-radius:var(--radius);
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .hours-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 24px 50px -24px rgba(0,0,0,.6);}
+  .hours-card h3{font-size:22px;margin-bottom:6px;color:#fff;}
+  .hours-card .sub{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:22px;display:block;}
+  .hours-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.14);font-size:15px;}
+  .hours-row span:first-child{color:#fff;font-weight:500;}
+  .hours-row span:last-child{font-family:'Space Mono',monospace;font-size:13.5px;color:rgba(246,241,228,.72);}
+  .kitchen-note{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;display:block;margin-top:-6px;margin-bottom:11px;}
+  .hours-note{
+    margin-top:18px;font-size:13px;color:rgba(246,241,228,.75);
+    background:rgba(255,255,255,.05);border-left:3px solid var(--gold);padding:12px 14px;
+  }
+  .contact-block{margin-top:26px;display:flex;flex-direction:column;gap:14px;}
+  .contact-line{display:flex;align-items:center;gap:12px;font-size:15px;color:rgba(246,241,228,.9);}
+  .contact-line svg{width:18px;height:18px;color:var(--gold);flex-shrink:0;}
+  .map-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 50px -24px rgba(0,0,0,.5);}
+  .map-wrap iframe{width:100%;height:100%;min-height:420px;border:0;display:block;}
+  .visit-ctas{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--pine-dark);color:rgba(246,241,228,.8);padding:56px 0 28px;}
+  footer .grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;}
+  @media(max-width:760px){footer .grid{grid-template-columns:1fr;gap:30px;}}
+  footer .brand{margin-bottom:14px;}
+  footer p{font-size:14px;color:rgba(246,241,228,.65);max-width:34ch;}
+  footer h5{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:var(--gold);margin-bottom:16px;}
+  footer .contact-line{color:rgba(246,241,228,.85);font-size:14px;}
+  footer .contact-line svg{color:var(--gold);}
+  .foot-bottom{
+    margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-family:'Space Mono',monospace;font-size:11.5px;color:rgba(246,241,228,.5);
+  }
+
+  /* ---------- MENU PHOTO STRIPS ---------- */
+  .menu-photos{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    margin:0 0 48px;
+  }
+  .menu-photos.count-1{grid-template-columns:minmax(220px,360px);justify-content:center;}
+  .menu-photos.count-2{grid-template-columns:repeat(2,1fr);max-width:720px;margin-left:auto;margin-right:auto;}
+  .menu-photos.count-3{grid-template-columns:repeat(3,1fr);}
+  .menu-photos.count-4{grid-template-columns:repeat(4,1fr);margin-bottom:48px;}
+  @media(max-width:900px){.menu-photos.count-4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.menu-photos.count-4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:900px){.menu-photos{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.menu-photos{grid-template-columns:repeat(2,1fr);}}
+  .photo-card{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;box-shadow:0 20px 40px -18px rgba(0,0,0,.55);}
+  .photo-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .photo-card:hover img{transform:scale(1.06);}
+  .photo-card span{
+    display:none;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="container">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7 2 4 6 4 10c0 6 5 9 8 12 3-3 8-6 8-12 0-4-3-8-8-8Z" stroke="currentColor" stroke-width="1.4"/><path d="M12 7v9M9 10c0 1.7 1.3 3 3 3M15 10c0 1.7-1.3 3-3 3" stroke="currentColor" stroke-width="1.4"/></svg>
+      Armonk Country Kitchen
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#top" class="nav-close-link">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#catering">Catering</a>
+      <a href="#visit">Visit</a>
+      <a class="nav-phone" href="tel:19142730150" style="display:inline-flex;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.9c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke="currentColor" stroke-width="1.3"/></svg>
+        (914) 273-0150
+      </a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span class="icon-burger">&#9776;</span>
+      <span class="icon-close">&#10005;</span>
+    </button>
+  </div>
+</header>
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<section class="hero" id="top">
+  <div class="hero-slides">
+    <div class="slide s1"></div>
+    <div class="slide s2"></div>
+    <div class="slide s3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <img src="ACKLogo.png" alt="Armonk Country Kitchen — The place for comfort food, est. 2002" class="hero-logo">
+      <div class="hero-ctas" style="justify-content:center;">
+        <a href="#menu" class="btn btn-line">View Full Menu</a>
+        <a href="tel:19142730150" class="btn btn-line">Order Now</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="grid">
+      <div class="about-photo">
+        <div class="frame"></div>
+        <img src="case.jpg" alt="Fresh salads and prepared foods in the Armonk Country Kitchen deli case">
+      </div>
+      <div>
+        <em class="eyebrow">Made fresh, every day</em>
+        <h2>A neighborhood gourmet place, done right.</h2>
+        <p>Armonk Country Kitchen is your go-to spot for breakfast, lunch, take-home dinners, and everything in between. Start your morning with our griddle favorites, build your own creation at our all-day salad bar, or choose from a
+           sandwich menu deep enough to satisfy the whole
+           neighborhood. Everything is freshly made in-house daily-from our scratch-baked muffins and breads to our famous, comforting hot soups (available seasonal from September  through May)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="menu-head">
+      <em class="eyebrow">Delicious Menu</em>
+      <div class="laurel">
+        <svg viewBox="0 0 40 24" fill="none"><path d="M38 22C20 22 4 14 4 2" stroke="currentColor" stroke-width="1.4"/><path d="M6 4c2 3 2 6 0 8M10 2c2 3 2 7-1 10M15 1c2 4 1 8-2 11M20 1c1 4-1 8-4 11" stroke="currentColor" stroke-width="1.1"/></svg>
+        <h2>Our Menu</h2>
+        <svg class="flip" viewBox="0 0 40 24" fill="none"><path d="M38 22C20 22 4 14 4 2" stroke="currentColor" stroke-width="1.4"/><path d="M6 4c2 3 2 6 0 8M10 2c2 3 2 7-1 10M15 1c2 4 1 8-2 11M20 1c1 4-1 8-4 11" stroke="currentColor" stroke-width="1.1"/></svg>
+      </div>
+      <p>Tap a category to browse — everything is made to order.</p>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <div class="tab-item">
+        <button class="tab-btn active" data-tab="breakfast"><span>Breakfast</span><svg class="tab-chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="tab-panel active" id="panel-breakfast">
+              <div class="tab-panel-inner">
+              <div class="menu-photos">
+                <div class="photo-card"><img src="B1.jpg" alt="Weekend waffle with berries and chocolate at Armonk Country Kitchen"><span>Ham, Egg &amp; Cheese</span></div>
+                <div class="photo-card"><img src="B2.jpg" alt="Bacon, egg and cheese sandwich with coffee"><span>Bacon, Egg &amp; Cheese</span></div>
+                <div class="photo-card"><img src="B3.jpg" alt="Breakfast burrito wrap sliced in half with eggs, cheese and tomato"><span>Breakfast Burrito Wrap</span></div>
+                <div class="photo-card"><img src="B4.jpg" alt="Stack of classic pancakes with butter, strawberries and blueberries"><span>Classic Pancakes</span></div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>Breakfast Sandwiches</h3><span class="menu-group-note">7 grain · rye · brioche · sourdough · kaiser roll · ciabatta · gluten-free</span></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Egg &amp; Cheese<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Bacon, Egg &amp; Cheese<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Ham, Egg &amp; Cheese<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Sausage, Egg &amp; Cheese<span class="dots"></span></h4></div>
+                </div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>Breakfast Burritos</h3><span class="menu-group-note">plain · whole wheat · spinach · gluten-free</span></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Egg, Cheese, Onion &amp; Bacon<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Egg, Cheese, Onion, Tomato &amp; Broccoli<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Egg, Cheese, Onion, Spinach &amp; Mushroom<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Egg, Cheese, Onion, Peppers &amp; Ham<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Egg, Cheese &amp; Home Fries<span class="dots"></span></h4></div>
+                </div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>Breakfast Plates</h3></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Two Eggs Any Style<span class="dots"></span></h4><p>served with toast</p></div>
+                  <div class="menu-item"><h4>Two Eggs with Meat<span class="dots"></span></h4><p>home fries &amp; toast</p></div>
+                  <div class="menu-item"><h4>A.C.K.'s Hungry Man <span class="tag">Big Appetite</span><span class="dots"></span></h4><p>two eggs, meat, home fries, toast &amp; a classic pancake</p></div>
+                </div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>Omelet &amp; Griddle Station</h3></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Egg or Egg-White Omelet<span class="dots"></span></h4><p>choose up to 3: onions, tomato, broccoli, peppers, mushroom, spinach, ham, cheddar, swiss, pepperjack</p><p><span style="color:#fff;">Additional toss-ins:</span> avocado, feta, goat cheese, mozzarella, bacon, sausage, turkey bacon, fresh turkey, black beans</p></div>
+                  <div class="menu-item"><h4>Classic, Blueberry or Banana Pancakes<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Chocolate Chip / Banana Choc. Chip Pancakes<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Challah French Toast<span class="dots"></span></h4></div>
+                  <div class="menu-item"><h4>Weekend Waffle <span class="tag">Weekends</span><span class="dots"></span></h4><p>plain or chocolate chip</p></div>
+                  <div class="menu-item"><h4>A.C.K.'s Hot Oatmeal<span class="dots"></span></h4><p>Toppings: raisins, cranberries, banana, almonds &amp; walnuts</p></div>
+                </div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>Sides</h3></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Home Fries · Bacon · Ham · Sausage · Turkey Bacon · Avocado<span class="dots"></span></h4></div>
+                </div>
+              </div>
+              </div>
+            </div>
+      </div>
+      <div class="tab-item">
+        <button class="tab-btn" data-tab="sandwiches"><span>Sandwiches &amp; Paninis</span><svg class="tab-chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="tab-panel" id="panel-sandwiches">
+              <div class="tab-panel-inner">
+              <div class="menu-photos">
+                <div class="photo-card"><img src="SP1.jpg" alt="B.L.T.A. sandwich"><span>B.L.T.A.</span></div>
+                <div class="photo-card"><img src="SP2.jpg" alt="A.C.K.'s Pastrami Reuben panini with fries and pickle"><span>A.C.K.'s Pastrami Reuben</span></div>
+                <div class="photo-card"><img src="SP3.jpg" alt="A.C.K.'s Philly Cheese Steak with fries"><span>A.C.K.'s Philly Cheese Steak</span></div>
+                <div class="photo-card"><img src="SP4.jpg" alt="Grilled Chicken Pesto panini"><span>Grilled Chicken Pesto</span></div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>Sandwich Board</h3><span class="menu-group-note">7 grain · rye · brioche · sourdough · roll · ciabatta · wedge · gluten-free</span></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Turkey &amp; Bacon Club<span class="dots"></span></h4><p>cheddar, avocado, lettuce, tomato &amp; garlic mayo</p></div>
+                  <div class="menu-item"><h4>Old School Chicken Cutlet<span class="dots"></span></h4><p>cheddar, lettuce, tomato &amp; russian dressing</p></div>
+                  <div class="menu-item"><h4>Chicken Cutlet &amp; Mozzarella<span class="dots"></span></h4><p>prosciutto, roasted peppers, lettuce &amp; balsamic</p></div>
+                  <div class="menu-item"><h4>Roast Beef &amp; Pepper-Jack<span class="dots"></span></h4><p>lettuce, roasted peppers &amp; horseradish sauce</p></div>
+                  <div class="menu-item"><h4>Turkey &amp; Dill Havarti<span class="dots"></span></h4><p>lettuce, cucumber &amp; honey-mustard</p></div>
+                  <div class="menu-item"><h4>Fresh Mozzarella &amp; Tomato<span class="dots"></span></h4><p>lettuce &amp; balsamic dressing</p></div>
+                  <div class="menu-item"><h4>Brie &amp; Turkey or Ham<span class="dots"></span></h4><p>lettuce, tomato &amp; honey-mustard</p></div>
+                  <div class="menu-item"><h4>B.L.T.A.<span class="dots"></span></h4><p>bacon, lettuce, tomato, avocado &amp; mayo</p></div>
+                  <div class="menu-item"><h4>American Combo<span class="dots"></span></h4><p>roast beef, ham, turkey, cheddar &amp; lettuce</p></div>
+                  <div class="menu-item"><h4>Italian Combo<span class="dots"></span></h4><p>mozzarella, prosciutto, salami, ham, pepperoni, soppressata, vinegar peppers &amp; house dressing</p></div>
+                </div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>A.C.K.'s Hot Paninis</h3></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Grilled Chicken Pesto<span class="dots"></span></h4><p>mozzarella &amp; roasted peppers</p></div>
+                  <div class="menu-item"><h4>Turkey Melt<span class="dots"></span></h4><p>bacon, swiss &amp; mayo</p></div>
+                  <div class="menu-item"><h4>Fresh Mozzarella &amp; Tomato<span class="dots"></span></h4><p>with pesto</p></div>
+                  <div class="menu-item"><h4>Spicy Chicken &amp; Mozzarella<span class="dots"></span></h4><p>hot cherry peppers &amp; garlic mayo</p></div>
+                  <div class="menu-item"><h4>Santa Fe Chicken Wrap<span class="dots"></span></h4><p>cheddar, salsa, tortilla strips, grilled onions &amp; peppers</p></div>
+                  <div class="menu-item"><h4>B.B.Q. Chicken Wrap<span class="dots"></span></h4><p>caramelized onions, roasted peppers &amp; B.B.Q. sauce</p></div>
+                  <div class="menu-item"><h4>Jared's Buffalo Red Eye Wrap<span class="dots"></span></h4><p>breaded chicken cutlet, bacon, swiss &amp; buffalo sauce</p></div>
+                  <div class="menu-item"><h4>A.C.K.'s Philly Cheese Steak<span class="dots"></span></h4><p>sautéed onions, peppers, american, &amp; pepper jack on a hero</p></div>
+                  <div class="menu-item"><h4>A.C.K.'s Pastrami Reuben<span class="dots"></span></h4><p>melted swiss, sauerkraut &amp; russian dressing on grilled rye</p></div>
+                </div>
+              </div>
+              </div>
+            </div>
+      </div>
+      <div class="tab-item">
+        <button class="tab-btn" data-tab="bowls"><span>Bowls, Burritos &amp; Burgers</span><svg class="tab-chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="tab-panel" id="panel-bowls">
+              <div class="tab-panel-inner">
+              <div class="menu-photos">
+                <div class="photo-card"><img src="BBB1.jpg" alt="Bang! Bowl with grilled chicken, broccoli, carrots and snow peas"><span>Bang! Bowl</span></div>
+                <div class="photo-card"><img src="BBB2.jpg" alt="A.C.K. hot rice bowl with grilled chicken, avocado and black beans"><span>A.C.K. Bowl</span></div>
+                <div class="photo-card"><img src="BBB3.jpg" alt="A.C.K.'s burrito sliced in half showing beef, rice, beans and avocado"><span>A.C.K.'s Burrito</span></div>
+                <div class="photo-card"><img src="BBB4.jpg" alt="A.C.K.'s Smash Burger with fries"><span>A.C.K.'s Smash Burger</span></div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>A.C.K.'s Hot Rice Bowls</h3><span class="menu-group-note">brown rice or cauliflower rice · chicken, ground beef, shrimp or tofu</span></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>A.C.K. Bowl<span class="dots"></span></h4><p>cheese, avocado, lettuce, corn, black beans &amp; pico de gallo</p></div>
+                  <div class="menu-item"><h4>Bang! Bowl<span class="dots"></span></h4><p>carrots, snow peas &amp; broccoli in our famous bang! sauce</p></div>
+                  <div class="menu-item"><h4>B.B.Q. Bowl<span class="dots"></span></h4><p>cheese, corn, black beans, tomato, lettuce, tortilla strips &amp; B.B.Q. sauce</p></div>
+                </div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>A.C.K.'s Burritos</h3><span class="menu-group-note">beef, chicken, or shrimp</span></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>The Burrito<span class="dots"></span></h4><p>rice, cheese, corn, avocado, lettuce, black beans, pico de gallo &amp; sour cream</p></div>
+                </div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>A.C.K.'s Smash Burger</h3></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Smash Burger<span class="dots"></span></h4><p>on Texas brioche with lettuce, tomato, pickles &amp; fries — add cheese, bacon, avocado or sautéed onions</p></div>
+                </div>
+              </div>
+              </div>
+            </div>
+      </div>
+      <div class="tab-item">
+        <button class="tab-btn" data-tab="wraps"><span>Wraps</span><svg class="tab-chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="tab-panel" id="panel-wraps">
+              <div class="tab-panel-inner">
+              <div class="menu-photos">
+                <div class="photo-card"><img src="W1.jpg" alt="Classic tuna wrap sliced in half with pickles"><span>Classic Tuna Wrap</span></div>
+                <div class="photo-card"><img src="W2.jpg" alt="Gourmet chicken wrap sliced in half"><span>Grilled Chicken Caesar</span></div>
+                <div class="photo-card"><img src="W3.jpg" alt="Buffalo chicken wrap sliced in half"><span>Buffalo Chicken Salad</span></div>
+                <div class="photo-card"><img src="W4.jpg" alt="Greek chicken wrap sliced in half"><span>Greek Chicken</span></div>
+              </div>
+
+              <div class="menu-group">
+                <div class="menu-group-head"><h3>Gourmet Wraps</h3><span class="menu-group-note">plain · whole wheat · spinach · gluten-free</span></div>
+                <div class="menu-grid">
+                  <div class="menu-item"><h4>Classic Chicken Salad<span class="dots"></span></h4><p>lettuce &amp; tomato</p></div>
+                  <div class="menu-item"><h4>Low-Fat Chicken Salad<span class="dots"></span></h4><p>with lettuce</p></div>
+                  <div class="menu-item"><h4>Classic Tuna Salad<span class="dots"></span></h4><p>lettuce &amp; tomato</p></div>
+                  <div class="menu-item"><h4>Low-Fat Tuna Salad<span class="dots"></span></h4><p>with lettuce</p></div>
+                  <div class="menu-item"><h4>Egg Salad<span class="dots"></span></h4><p>lettuce &amp; tomato</p></div>
+                  <div class="menu-item"><h4>Grilled Chicken Caesar<span class="dots"></span></h4><p>romaine, cheese &amp; caesar dressing</p></div>
+                  <div class="menu-item"><h4>Buffalo Chicken Salad<span class="dots"></span></h4><p>blue cheese, lettuce &amp; spicy mayo</p></div>
+                  <div class="menu-item"><h4>California Chicken<span class="dots"></span></h4><p>avocado, carrot, cucumber, tomato, lettuce &amp; house</p></div>
+                  <div class="menu-item"><h4>Crunchy Chicken Cutlet<span class="dots"></span></h4><p>cheddar, vinegar peppers, lettuce &amp; garlic mayo</p></div>
+                  <div class="menu-item"><h4>Greek Chicken<span class="dots"></span></h4><p>feta, artichoke, olives, roast peppers, lettuce &amp; house</p></div>
+                  <div class="menu-item"><h4>Cobb Chicken<span class="dots"></span></h4><p>egg, bacon, blue cheese, tomato, lettuce &amp; house</p></div>
+                  <div class="menu-item"><h4>Grilled Chicken &amp; Mozzarella<span class="dots"></span></h4><p>lettuce, tomato &amp; honey-mustard</p></div>
+                  <div class="menu-item"><h4>Balsamic Roasted Vegetables<span class="dots"></span></h4><p>seasonal vegetables, lettuce, hummus &amp; dill havarti</p></div>
+                  <div class="menu-item"><h4>Turkey &amp; Muenster<span class="dots"></span></h4><p>lettuce, tomato &amp; mayo</p></div>
+                </div>
+              </div>
+              </div>
+            </div>
+      </div>
+      <div class="tab-item">
+        <button class="tab-btn" data-tab="saladbar"><span>Build-Your-Own Salad Bar</span><svg class="tab-chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="tab-panel" id="panel-saladbar">
+              <div class="tab-panel-inner">
+              <div class="menu-photos count-3">
+                <div class="photo-card"><img src="V1.jpg" alt="Salad bar toppings including grilled tofu, kalamata olives, roasted onions and vegetables"><span>Build It Your Way</span></div>
+                <div class="photo-card"><img src="V2.jpg" alt="Salad bar toppings including beets, corn, edamame, artichokes, grapes and eggs"><span>Fresh Toppings Daily</span></div>
+                <div class="photo-card"><img src="V3.jpg" alt="Salad bar toppings including broccoli, carrots, red cabbage, feta and tomatoes"><span>Every Step, Your Choice</span></div>
+              </div>
+
+              <div class="menu-head" style="margin-bottom:36px;">
+                <p>Build a salad exactly the way you like it.</p>
+              </div>
+              <div class="steps">
+                <div class="step">
+                  <span class="step-num">Step 1</span>
+                  <h4>Lettuce</h4>
+                  <ul><li>Romaine</li><li>Mixed Greens</li><li>Kale</li><li>Arugula</li><li>Spinach</li></ul>
+                </div>
+                <div class="step">
+                  <span class="step-num">Step 2</span>
+                  <h4>Protein</h4>
+                  <ul><li>Grilled Chicken or Shrimp</li><li>Classic or Low-Fat Chicken Salad</li><li>Classic or Low-Fat Tuna Salad</li><li>Egg Salad</li><li>Grilled Tofu · Dry Tuna</li><li>Bacon · Turkey Bacon</li><li>Roast Turkey · Roast Beef</li><li>Ham or Salami</li><li>Boiled Egg or Egg Whites</li></ul>
+                </div>
+                <div class="step">
+                  <span class="step-num">Step 3</span>
+                  <h4>Vegetables</h4>
+                  <ul><li>Carrots · Corn · Broccoli · Celery</li><li>Red Onions · Beets · Green Peas</li><li>Tomatoes · Cucumbers · Mushrooms</li><li>Grilled Eggplant, Zucchini &amp; Onions</li><li>Hot Cherry Peppers · Kalamata Olives</li><li>Roasted Peppers &amp; Mushrooms</li><li>Black Beans · Chick Peas · Edamame</li><li>Quinoa · Artichokes · Hearts of Palm</li><li>Avocado · Strawberries · Cranberries</li></ul>
+                </div>
+                <div class="step">
+                  <span class="step-num">Step 4</span>
+                  <h4>Cheese</h4>
+                  <ul><li>Parmesan · Feta · Mozzarella</li><li>Goat Cheese · Blue Cheese</li><li>Cheddar · Swiss · American</li></ul>
+                </div>
+                <div class="step">
+                  <span class="step-num">Step 5</span>
+                  <h4>Nuts &amp; Crunchies</h4>
+                  <ul><li>Almonds · Cashews · Walnuts · Pecans</li><li>Pumpkin &amp; Sunflower Seeds</li><li>Chinese Noodles · Tortilla Strips</li><li>Sesame Seeds</li></ul>
+                </div>
+                <div class="step">
+                  <span class="step-num">Step 6</span>
+                  <h4>Dressing, on the Side</h4>
+                  <ul><li>Balsamic Dressing (GF) · House Dressing (GF)</li><li>Sesame Ginger · Caesar Dressing</li><li>White Balsamic Dressing (GF) · Honey-Lime (GF)</li><li>Lemon Vinaigrette (GF) · Buttermilk Ranch</li><li>Honey Mustard · Avocado Ranch (GF)</li><li>Wasabi-Cucumber (GF) · Blue Cheese</li><li>Russian (GF) · No-Fat Raspberry</li><li>Olive Oil &amp; Red Vinegar (GF) · Olive Oil &amp; Balsamic Vinegar (GF)</li><li>Olive Oil &amp; Lemon Juice (GF) · Just Red Vinegar (GF)</li><li>Just Balsamic Vinegar (GF) · Just Lemon Juice (GF)</li></ul>
+                </div>
+              </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="catering" id="catering">
+  <div class="container">
+    <div class="menu-head">
+      <em class="eyebrow">Feeding a Crowd</em>
+      <div class="laurel">
+        <svg viewBox="0 0 40 24" fill="none"><path d="M38 22C20 22 4 14 4 2" stroke="currentColor" stroke-width="1.4"/><path d="M6 4c2 3 2 6 0 8M10 2c2 3 2 7-1 10M15 1c2 4 1 8-2 11M20 1c1 4-1 8-4 11" stroke="currentColor" stroke-width="1.1"/></svg>
+        <h2 style="color:#fff;">Catering</h2>
+        <svg class="flip" viewBox="0 0 40 24" fill="none"><path d="M38 22C20 22 4 14 4 2" stroke="currentColor" stroke-width="1.4"/><path d="M6 4c2 3 2 6 0 8M10 2c2 3 2 7-1 10M15 1c2 4 1 8-2 11M20 1c1 4-1 8-4 11" stroke="currentColor" stroke-width="1.1"/></svg>
+      </div>
+      <p>Feeding the whole office, rewarding the team, or hosting family holidays?
+We've got you covered. Our catering menu is built from the exact same recipes you already love. Order by the pound or by the platter-ready right when you need it.</p>
+    </div>
+
+    <div class="menu-photos count-4">
+      <div class="photo-card"><img src="C1.jpg" alt="Catering spread from Armonk Country Kitchen"></div>
+      <div class="photo-card"><img src="C2.jpg" alt="Catering spread from Armonk Country Kitchen"></div>
+      <div class="photo-card"><img src="C4.jpg" alt="Catering spread from Armonk Country Kitchen"></div>
+      <div class="photo-card"><img src="C3.jpg" alt="Catering spread from Armonk Country Kitchen"></div>
+    </div>
+
+    <div class="cater-grid">
+      <div class="cater-card">
+        <h3>Salads by the Pound</h3>
+        <p>Choose from our full salad menu — chicken salads, vegetable &amp; grain salads, or pasta salads. Approx. 2–3 people per pound on most salads.</p>
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" type="button" aria-expanded="false">
+              <span>Chicken Salads</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-inner">
+                <div class="acc-item"><h5>Classic Chicken Salad</h5><p>chicken, celery &amp; mayo</p></div>
+                <div class="acc-item"><h5>Low-Fat Chicken w/ Apples &amp; Cranberries</h5><p>chicken, apples, dried cranberries &amp; low-fat mayo</p></div>
+                <div class="acc-item"><h5>Sesame Ginger Chicken Salad</h5><p>shredded chicken, carrots, snow peas, cabbage, red cabbage, peppers tossed w/ our ginger dressing</p></div>
+                <div class="acc-item"><h5>A.C.K.'s Boca Raton Chicken Salad</h5><p>shredded chicken, cabbage, pecans, dried apricots tossed w/ honey-lime vinaigrette</p></div>
+                <div class="acc-item"><h5>Balsamic Grilled Chicken Salad</h5><p>chicken, cherry tomatoes, sun-dried tomatoes, fresh spinach tossed w/ a balsamic reduction</p></div>
+                <div class="acc-item"><h5>&ldquo;Canyon Ranch&rdquo; Chicken Salad</h5><p>cubed grilled chicken breast, red grapes, celery &amp; low-fat mayo</p></div>
+                <div class="acc-item"><h5>Roasted Chicken w/ Broccoli &amp; Cashews</h5><p>roasted chicken thighs, raw broccoli, sun-dried tomatoes w/ olive oil &amp; lemon juice</p></div>
+                <div class="acc-item"><h5>Spicy Buffalo Chicken Salad</h5><p>shredded chicken, carrots, celery w/ spicy buffalo dressing — crumbled blue cheese optional</p></div>
+                <div class="acc-item"><h5>Greek Chicken Salad</h5><p>chicken, artichokes, olives, roasted peppers, chick peas, feta cheese tossed in our house vinaigrette</p></div>
+                <div class="acc-item"><h5>Tex-Mex Chicken Salad</h5><p>chicken, corn, black beans, tomatoes, avocado, cilantro, crunchy tortilla strips w/ chipotle dressing</p></div>
+                <div class="acc-item"><h5>Cobb Style Chicken Salad</h5><p>grilled chicken, avocado, tomato, bacon, egg, crumbled blue cheese tossed w/ a herb vinaigrette</p></div>
+                <div class="acc-item"><h5>Chicken w/ Avocado &amp; Tomato</h5><p>grilled chicken, avocados, tomatoes, fresh spinach tossed w/ lemon vinaigrette</p></div>
+                <div class="acc-item"><h5>Chicken w/ Arugula &amp; Radicchio</h5><p>grilled chicken, arugula, radicchio, red onion tossed w/ our house vinaigrette</p></div>
+                <div class="acc-item"><h5>A.C.K.'s Kale Chicken Caesar Salad</h5><p>cubed grilled chicken breast, kale, shredded parmesan cheese tossed w/ our creamy caesar dressing</p></div>
+                <div class="acc-item"><h5>Classic Chicken Caesar Salad</h5><p>grilled chicken breast, shredded parmesan cheese tossed w/ our creamy caesar dressing</p></div>
+                <p class="acc-note">Approx. 2–3 people per lb on most salads. All prices subject to change.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" type="button" aria-expanded="false">
+              <span>Vegetable, Grain &amp; Seafood Salads</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-inner">
+                <div class="acc-item"><h5>Grilled Corn &amp; Avocado Salad <span class="acc-tag">Seasonal</span></h5><p>fresh grilled corn, avocado, cherry tomatoes tossed w/ our famous house dressing</p></div>
+                <div class="acc-item"><h5>Summer Chick Pea Salad</h5><p>chick peas, quinoa, carrots, celery, cucumber, kale w/ lemon vinaigrette</p></div>
+                <div class="acc-item"><h5>Roasted Eggplant &amp; Tomato Salad</h5><p>eggplant, cherry tomatoes, spinach w/ rice-wine vinegar &amp; olive oil</p></div>
+                <div class="acc-item"><h5>A.C.K.'s Boca Raton Broccoli Slaw</h5><p>raw broccoli, cabbage, almonds, dried cranberries w/ honey-lime vinaigrette</p></div>
+                <div class="acc-item"><h5>Hearts of Palm Salad</h5><p>hearts of palm, cherry tomatoes, cucumber w/ herb vinaigrette</p></div>
+                <div class="acc-item"><h5>Greek Medley Salad</h5><p>feta, cherry tomatoes, cucumber, green peppers, chick peas, olives w/ oregano vinaigrette</p></div>
+                <div class="acc-item"><h5>Dill-Cucumber Salad</h5><p>fresh dill, cucumber, red onion w/ house dressing</p></div>
+                <div class="acc-item"><h5>Lentil-Quinoa &amp; Kale Salad</h5><p>french lentils, quinoa, kale, red peppers w/ our white balsamic dressing</p></div>
+                <div class="acc-item"><h5>Edamame &amp; Grilled Tofu Salad</h5><p>edamame, tofu, spinach w/ fresh ginger infused sesame oil</p></div>
+                <div class="acc-item"><h5>Fresh Mozzarella &amp; Tomato Salad</h5><p>tossed in our house herb vinaigrette</p></div>
+                <div class="acc-item"><h5>A.C.K.'s Kale Salad</h5><p>kale, shredded parmesan, toasted almonds, cranberries w/ lemon olive oil &amp; rice-wine vinegar</p></div>
+                <div class="acc-item"><h5>Greek Roasted Quinoa Salad</h5><p>roasted seasonal vegetables, feta, chick peas w/ lemon olive oil</p></div>
+                <div class="acc-item"><h5>Spring Farro &amp; Edamame Salad</h5><p>farro, edamame, corn, red peppers w/ white balsamic dressing</p></div>
+                <div class="acc-item"><h5>Tomato &amp; Avocado Salad</h5><p>tossed in our house vinaigrette</p></div>
+                <div class="acc-item"><h5>Spicy Black Bean &amp; Corn Salad</h5><p>black bean, corn, mixed peppers w/ cilantro vinaigrette</p></div>
+                <div class="acc-item"><h5>Summer Snow Crab Salad</h5><p>celery, mixed peppers &amp; mayo</p></div>
+                <div class="acc-item"><h5>Sesame Ginger Slaw</h5><p>cabbage, carrots, snow peas, red cabbage, mixed peppers w/ sesame ginger dressing</p></div>
+                <div class="acc-item"><h5>Jicama &amp; Apple Summer Slaw</h5><p>jicama, apples, carrots, snow peas, cabbage w/ red pepper &amp; ginger vinaigrette</p></div>
+                <div class="acc-item"><h5>A.C.K.'s Sriracha Slaw</h5><p>cabbage, red cabbage, carrots, snow peas w/ sriracha dressing</p></div>
+                <div class="acc-item"><h5>Wasabi-Cucumber Slaw</h5><p>cabbage, carrots, apple, cucumber, snow peas w/ wasabi-cucumber dressing</p></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-toggle" type="button" aria-expanded="false">
+              <span>Pasta Salads</span>
+              <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="accordion-panel">
+              <div class="accordion-panel-inner">
+                <div class="acc-item"><h5>Sesame Noodles</h5><p>noodles, mixed peppers w/ soy-ginger vinaigrette</p></div>
+                <div class="acc-item"><h5>Orzo &amp; Feta</h5><p>feta, spinach w/ rice-wine vinegar &amp; garlic olive oil</p></div>
+                <div class="acc-item"><h5>&ldquo;Nut-Free&rdquo; Pesto Pasta</h5><p>pasta w/ cherry tomatoes, spinach &amp; pesto</p></div>
+                <div class="acc-item"><h5>Fusilli Pasta w/ Oven Roasted Tomatoes</h5><p>fusilli, roasted tomatoes, spinach w/ garlic infused olive oil — add mozzarella</p></div>
+                <div class="acc-item"><h5>Peanut-Bowties</h5><p>bowtie pasta, cashews, red peppers w/ peanut dressing</p></div>
+                <div class="acc-item"><h5>Pasta Primo</h5><p>assorted raw vegetables w/ house dressing</p></div>
+                <div class="acc-item"><h5>Blue Cheese-Bowties</h5><p>bowties, cherry tomatoes w/ crumbled blue cheese vinaigrette</p></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="cater-card">
+        <h3>Sandwich &amp; Wrap Platters</h3>
+        <p>Build a platter from our full Sandwich Board, Hot Panini or Gourmet Wrap menu. Cut in halves, served on a platter with pickles.</p>
+        <ul>
+          <li><a href="#menu" class="menu-jump-link" data-tab="sandwiches">Sandwich &amp; panini</a></li>
+          <li><a href="#menu" class="menu-jump-link" data-tab="wraps">Wrap</a></li>
+          <li>Assorted platters for groups</li>
+          <li>"It works both ways", your choice of bread or wrap</li>
+        </ul>
+      </div>
+      <div class="cater-card">
+        <h3>More Lunch & Brunch Suggestions</h3>
+        <p>Crowd-pleasers for lunch meetings, family gatherings, and everything in between.</p>
+        <ul>
+          <li>A.C.K.'s Crispy Chicken Fingers</li>
+          <li>Asian Chicken Dumplings</li>
+          <li>Mac &amp; Cheese</li>
+          <li>Ilanna's Sesame Chicken Nuggets</li>
+          <li>Balsamic Roasted Vegetables</li>
+          <li>Burnt Grilled Broccoli</li>
+          <li>Assorted Sandwich Platters</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cater-cta">
+      <h3>Ready to order?</h3>
+      <p>Call ahead and we'll build a platter around your group.</p>
+      <a href="tel:19142730150" class="btn btn-solid">Call (914) 273-0150</a>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="container">
+    <div class="menu-head" style="margin-bottom:52px;">
+      <em class="eyebrow">Say Hello</em>
+      <h2 style="font-size:clamp(32px,4.4vw,46px);margin-top:10px;">Visit Us</h2>
+    </div>
+    <div class="grid">
+      <div>
+        <div class="hours-card">
+          <h3>Hours</h3>
+          <span class="sub">Open daily</span>
+          <div class="hours-row"><span>Monday – Friday</span><span>6:30 AM – 5:00 PM</span></div>
+          <span class="kitchen-note">Kitchen closes at 4:30 PM</span>
+          <div class="hours-row"><span>Saturday</span><span>7:00 AM – 4:00 PM</span></div>
+          <span class="kitchen-note">Kitchen closes at 3:30 PM</span>
+          <div class="hours-row"><span>Sunday</span><span>8:00 AM – 3:00 PM</span></div>
+          <span class="kitchen-note">Kitchen closes at 2:30 PM</span>
+          <div class="hours-note">Hours may differ on holidays. No reservations — we're walk-in &amp; takeout only.</div>
+
+          <div class="contact-block">
+            <a class="contact-line" href="tel:19142730150">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.9c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" stroke="currentColor" stroke-width="1.3"/></svg>
+              (914) 273-0150
+            </a>
+            <a class="contact-line" href="https://www.google.com/maps/dir/?api=1&destination=397+Main+St%2C+Armonk%2C+NY+10504" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.3"/></svg>
+              397 Main St, Armonk, NY 10504
+            </a>
+          </div>
+          <div class="visit-ctas">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=397+Main+St%2C+Armonk%2C+NY+10504" target="_blank" rel="noopener" class="btn btn-line" style="color:#fff;">Get Directions</a>
+            <a href="tel:19142730150" class="btn btn-line" style="color:#fff;">Call Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=397+Main+St,+Armonk,+NY+10504&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Armonk Country Kitchen"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="grid">
+      <div>
+        <a href="#top" class="brand" style="color:#fff;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7 2 4 6 4 10c0 6 5 9 8 12 3-3 8-6 8-12 0-4-3-8-8-8Z" stroke="currentColor" stroke-width="1.4"/><path d="M12 7v9M9 10c0 1.7 1.3 3 3 3M15 10c0 1.7-1.3 3-3 3" stroke="currentColor" stroke-width="1.4"/></svg>
+          Armonk Country Kitchen
+        </a>
+        <p>&ldquo;The place for comfort food.&rdquo; Breakfast, lunch, a build-your-own salad bar, and catering — 397 Main St, Armonk, NY.</p>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <div class="contact-block">
+          <a class="contact-line" href="tel:19142730150">(914) 273-0150</a>
+          <a class="contact-line" href="https://www.google.com/maps/dir/?api=1&destination=397+Main+St%2C+Armonk%2C+NY+10504" target="_blank" rel="noopener">397 Main St, Armonk, NY 10504</a>
+        </div>
+      </div>
+      <div>
+        <h5>Follow Us</h5>
+        <div class="contact-block">
+          <a class="contact-line" href="https://www.instagram.com/armonk_country_kitchen/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4.3" stroke="currentColor" stroke-width="1.4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+            Follow Us
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Armonk Country Kitchen All Rights Reserved.</span>
+      <span>Walk-in &amp; Takeout</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav scroll state
+  const navEl = document.getElementById('siteNav');
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    navEl.classList.toggle('scrolled', y > 40);
+
+    // hide header on scroll down, show on scroll up (skip while dropdown is open)
+    if (!navLinks.classList.contains('open')) {
+      if (y > lastScrollY && y > 80) {
+        navEl.classList.add('hide-header');
+      } else if (y < lastScrollY) {
+        navEl.classList.remove('hide-header');
+      }
+    }
+    lastScrollY = y;
+  });
+
+  // mobile nav
+  const navLinks = document.getElementById('navLinks');
+  const navToggle = document.getElementById('navToggle');
+  const navBackdrop = document.getElementById('navBackdrop');
+
+  function setNavOpen(open){
+    navLinks.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navBackdrop.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    if (open) navEl.classList.remove('hide-header');
+  }
+
+  navToggle.addEventListener('click', () => {
+    setNavOpen(!navLinks.classList.contains('open'));
+  });
+  navBackdrop.addEventListener('click', () => setNavOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') setNavOpen(false);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNavOpen(false)));
+
+  // menu tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const allPanels = document.querySelectorAll('.tab-panel');
+  const isMobileMenu = () => window.matchMedia('(max-width:760px)').matches;
+
+  function activateTab(tabName){
+    const btn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+    const panel = document.getElementById('panel-' + tabName);
+
+    if(isMobileMenu()){
+      // independent accordion, just like the catering section: tapping a category
+      // opens/closes only that one, others stay as they are, page just scrolls
+      const isOpen = panel && panel.classList.contains('active');
+      if(btn) btn.classList.toggle('active', !isOpen);
+      if(panel) panel.classList.toggle('active', !isOpen);
+    } else {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      allPanels.forEach(p => p.classList.remove('active'));
+      if(btn) btn.classList.add('active');
+      if(panel) panel.classList.add('active');
+    }
+  }
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+  });
+
+  // keep layout sane when crossing the mobile breakpoint (e.g. rotating a tablet)
+  let lastMobileState = isMobileMenu();
+  window.addEventListener('resize', () => {
+    const nowMobile = isMobileMenu();
+    if(nowMobile !== lastMobileState){
+      lastMobileState = nowMobile;
+      tabBtns.forEach(b => b.classList.remove('active'));
+      allPanels.forEach(p => p.classList.remove('active'));
+      if(!nowMobile) activateTab('breakfast');
+    }
+  });
+
+  // start collapsed on mobile load
+  if(isMobileMenu()){
+    tabBtns.forEach(b => b.classList.remove('active'));
+    allPanels.forEach(p => p.classList.remove('active'));
+  }
+
+  // catering links that jump to a specific menu tab
+  document.querySelectorAll('.menu-jump-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateTab(link.dataset.tab);
+      document.getElementById('menu').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // accordions in the "Salads by the Pound" catering card
+  document.querySelectorAll('.accordion-toggle').forEach(btn => {
+    const panel = btn.nextElementSibling;
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      panel.style.maxHeight = isOpen ? '' : panel.scrollHeight + 'px';
+    });
+  });
+</script>
+
+</body>
+</html>
